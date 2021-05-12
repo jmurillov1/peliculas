@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:peliculas/src/models/pelicula_model.dart';
 
 import 'package:peliculas/src/widgets/card_swiper.dart';
 import 'package:peliculas/src/providers/peliculas_provider.dart';
@@ -53,7 +54,7 @@ class HomePage extends StatelessWidget {
   Widget _swiperTarjetas() {
     return FutureBuilder(
       future: peliculasProvider.getEnCines(),
-      builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+      builder: (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
         if (snapshot.hasData) {
           return CardSwiper(
             peliculas: snapshot.data,
@@ -90,7 +91,7 @@ class HomePage extends StatelessWidget {
           ),
           StreamBuilder(
             stream: peliculasProvider.popularesStream,
-            builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
+            builder: (BuildContext context, AsyncSnapshot<List<Pelicula>> snapshot) {
               if (snapshot.hasData) {
                 return MovieHorizontal(
                   peliculas: snapshot.data,

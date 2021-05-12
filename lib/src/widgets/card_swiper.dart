@@ -4,9 +4,9 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:peliculas/src/models/pelicula_model.dart';
 
 class CardSwiper extends StatelessWidget {
-  final List<Pelicula> peliculas;
+  final List<Pelicula>? peliculas;
 
-  CardSwiper({@required this.peliculas});
+  CardSwiper({required this.peliculas});
 
   @override
   Widget build(BuildContext context) {
@@ -20,14 +20,14 @@ class CardSwiper extends StatelessWidget {
         itemWidth: _screenSize.width * 0.7,
         itemHeight: _screenSize.height * 0.5,
         itemBuilder: (BuildContext context, int index) {
-          peliculas[index].uniqueId = '${peliculas[index].id}-tarjeta';
+          peliculas![index].uniqueId = '${peliculas![index].id}-tarjeta';
           return Hero(
-            tag: peliculas[index].id,
+            tag: peliculas![index].id!,
             child: ClipRRect(
               borderRadius: BorderRadius.circular(20.0),
               // child: Text(peliculas[index].toString()),
               child: FadeInImage(
-                image: NetworkImage(peliculas[index].getPosterImg()),
+                image: NetworkImage(peliculas![index].getPosterImg()),
                 placeholder: AssetImage('assets/img/loading.gif'),
                 fit: BoxFit.cover,
               ),
@@ -35,8 +35,8 @@ class CardSwiper extends StatelessWidget {
           );
         },
         onTap: (id) =>
-            Navigator.pushNamed(context, 'detalle', arguments: peliculas[id]),
-        itemCount: peliculas.length,
+            Navigator.pushNamed(context, 'detalle', arguments: peliculas![id]),
+        itemCount: peliculas!.length,
         // pagination: new SwiperPagination(),
         // control: new SwiperControl(),
       ),

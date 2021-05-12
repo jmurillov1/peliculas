@@ -7,7 +7,7 @@ import 'package:peliculas/src/providers/peliculas_provider.dart';
 class PeliculaDetalle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Pelicula pelicula = ModalRoute.of(context).settings.arguments;
+    final Pelicula pelicula = ModalRoute.of(context)!.settings.arguments as Pelicula;
     return Scaffold(
       body: CustomScrollView(
         slivers: <Widget>[
@@ -42,7 +42,7 @@ class PeliculaDetalle extends StatelessWidget {
       flexibleSpace: FlexibleSpaceBar(
         centerTitle: true,
         title: Text(
-          pelicula.title,
+          pelicula.title!,
           style: TextStyle(
             color: Colors.white,
             fontSize: 16.0,
@@ -86,12 +86,12 @@ class PeliculaDetalle extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Text(
-                  pelicula.title,
+                  pelicula.title!,
                   style: Theme.of(context).textTheme.headline6,
                   overflow: TextOverflow.ellipsis,
                 ),
                 Text(
-                  pelicula.originalTitle,
+                  pelicula.originalTitle!,
                   style: Theme.of(context).textTheme.subtitle1,
                   overflow: TextOverflow.ellipsis,
                 ),
@@ -122,7 +122,7 @@ class PeliculaDetalle extends StatelessWidget {
         vertical: 20.0,
       ),
       child: Text(
-        pelicula.overview,
+        pelicula.overview!,
         textAlign: TextAlign.justify,
       ),
     );
@@ -135,7 +135,7 @@ class PeliculaDetalle extends StatelessWidget {
       future: peliculasProvider.getCast(pelicula.id.toString()),
       builder: (BuildContext context, AsyncSnapshot<List> snapshot) {
         if (snapshot.hasData) {
-          return _crearActoresPageView(snapshot.data);
+          return _crearActoresPageView(snapshot.data as List<Actor>);
         } else {
           return Center(
             child: CircularProgressIndicator(),
@@ -177,11 +177,11 @@ class PeliculaDetalle extends StatelessWidget {
             ),
           ),
           Text(
-            actor.name,
+            actor.name!,
             overflow: TextOverflow.ellipsis,
           ),
           Text(
-            actor.character,
+            actor.character!,
             overflow: TextOverflow.ellipsis,
           ),
         ],

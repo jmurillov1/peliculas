@@ -14,21 +14,21 @@ class Peliculas {
 }
 
 class Pelicula {
-  String uniqueId;
-  bool adult;
-  String backdropPath;
-  List<int> genreIds;
-  int id;
-  String originalLanguage;
-  String originalTitle;
-  String overview;
-  double popularity;
-  String posterPath;
-  String releaseDate;
-  String title;
-  bool video;
-  double voteAverage;
-  int voteCount;
+  late String uniqueId;
+  bool? adult;
+  String? backdropPath;
+  List<int>? genreIds;
+  int? id;
+  String? originalLanguage;
+  String? originalTitle;
+  String? overview;
+  double? popularity;
+  String? posterPath;
+  String? releaseDate;
+  String? title;
+  bool? video;
+  double? voteAverage;
+  int? voteCount;
 
   Pelicula({
     this.adult,
